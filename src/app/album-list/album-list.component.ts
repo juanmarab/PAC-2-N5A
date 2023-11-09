@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-album-list',
@@ -11,14 +12,14 @@ export class AlbumListComponent implements OnInit {
   photos: any = {};
   showPhotos: { [albumId: number]: boolean } = {};
 
-  constructor(private http: HttpClient) {}
+  constructor(private dataService: DataService) {}
 
   ngOnInit(): void {
     this.fetchAlbums();
   }
 
   fetchAlbums() {
-    this.http.get('https://jsonplaceholder.typicode.com/albums').subscribe(
+    this.dataService.getAlbums().subscribe(
       (data: any) => {
         this.albums = data;
       },
@@ -38,8 +39,7 @@ export class AlbumListComponent implements OnInit {
   }
 
   fetchPhotos(albumId: number) {
-    this.http
-      .get(`https://jsonplaceholder.typicode.com/albums/${albumId}/photos`)
+    this.dataService.getPhotos(albumId)
       .subscribe(
         (data: any) => {
           this.photos[albumId] = data;
