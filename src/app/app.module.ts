@@ -18,13 +18,17 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AlbumListComponent } from './album-list/album-list.component';
 import { DataService } from 'src/app/services/data.service';
+import { PostsComponent } from './posts/posts.component';
+import { PhotosComponent } from './photos/photos.component';
 
 registerLocaleData(en);
 
 @NgModule({
   declarations: [
     AppComponent,
-    AlbumListComponent
+    AlbumListComponent,
+    PostsComponent,
+    PhotosComponent
   ],
   imports: [
     BrowserModule,

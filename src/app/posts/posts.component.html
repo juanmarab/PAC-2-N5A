@@ -1,0 +1,31 @@
+<div class="container">
+    <h1 class="title">Posts</h1>
+  
+    <div class="grid-header">
+      <div class="grid-item">Title</div>
+      <div class="grid-item">Body</div>
+      <div class="grid-item">Comments</div>
+    </div>
+  
+    <nz-list [nzDataSource]="posts" [nzRenderItem]="item">
+      <ng-template #item let-item>
+        <nz-list-item>
+          <h3>{{ item.title }}</h3>
+          <p>{{ item.body }}</p>
+          <button nz-button (click)="toggleComments(item.id)">
+            {{ showComments[item.id] ? 'Hide Comments' : 'Show Comments' }}
+          </button>
+          <nz-collapse>
+            <nz-collapse-panel
+              *ngFor="let comment of comments[item.id]"
+              [nzHeader]="'Comment: ' + comment.name"
+              [nzShowArrow]="false"
+              [nzActive]="showComments[item.id]"
+            >
+              <p>{{ comment.body }}</p>
+            </nz-collapse-panel>
+          </nz-collapse>
+        </nz-list-item>
+      </ng-template>
+    </nz-list>
+  </div>
