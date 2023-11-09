@@ -17,6 +17,7 @@ import en from '@angular/common/locales/en';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AlbumListComponent } from './album-list/album-list.component';
+import { DataService } from 'src/app/services/data.service';
 
 registerLocaleData(en);
 
@@ -36,7 +37,7 @@ registerLocaleData(en);
     FormsModule,
     BrowserAnimationsModule,
   ],
-  providers: [NzMessageService, NzNotificationService, { provide: NZ_I18N, useValue: en_US }],
+  providers: [NzMessageService, NzNotificationService, { provide: NZ_I18N, useValue: en_US }, DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

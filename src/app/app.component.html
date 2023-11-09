@@ -16,10 +16,7 @@
     <div class="grid-item">Comments</div>
   </div>
 
-  <nz-list
-    [nzDataSource]="posts"
-    [nzRenderItem]="item"
-  >
+  <nz-list [nzDataSource]="posts" [nzRenderItem]="item">
     <ng-template #item let-item>
       <nz-list-item>
         <h3>{{ item.title }}</h3>

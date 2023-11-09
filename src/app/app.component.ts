@@ -1,25 +1,25 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from 'src/app/services/data.service';
 
-import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
-  title:any = 'pac-2';
+export class AppComponent implements OnInit {
+  title = 'pac-2';
   posts: any[] = [];
-  comments: any = {};
-  showComments: { [postId: number]: any } = {};
+  comments: { [postId: number]: any[] } = {};
+  showComments: { [postId: number]: boolean } = {};
 
-  constructor(private http: HttpClient) {}
+  constructor(private dataService: DataService) {}
 
   ngOnInit(): void {
     this.fetchPosts();
   }
 
   fetchPosts() {
-    this.http.get('https://jsonplaceholder.typicode.com/posts').subscribe(
+    this.dataService.getPosts().subscribe(
       (data: any) => {
         this.posts = data;
       },
@@ -39,15 +39,13 @@ export class AppComponent implements OnInit{
   }
 
   fetchComments(postId: number) {
-    this.http
-      .get(`https://jsonplaceholder.typicode.com/posts/${postId}/comments`)
-      .subscribe(
-        (data: any) => {
-          this.comments[postId] = data;
-        },
-        (error) => {
-          console.error(`Failed to fetch comments for post ${postId}`, error);
-        }
-      );
+    this.dataService.getComments(postId).subscribe(
+      (data: any) => {
+        this.comments[postId] = data;
+      },
+      (error) => {
+        console.error(`Failed to fetch comments for post ${postId}`, error);
+      }
+    );
   }
 }
