@@ -19,7 +19,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AlbumListComponent } from './album-list/album-list.component';
 import { DataService } from 'src/app/services/data.service';
 import { PostsComponent } from './posts/posts.component';
-import { PhotosComponent } from './photos/photos.component';
 
 registerLocaleData(en);
 
@@ -27,8 +26,7 @@ registerLocaleData(en);
   declarations: [
     AppComponent,
     AlbumListComponent,
-    PostsComponent,
-    PhotosComponent
+    PostsComponent
   ],
   imports: [
     BrowserModule,
