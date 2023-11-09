@@ -12,10 +12,18 @@ export class DataService {
   constructor(private http: HttpClient) {}
 
   getPosts(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}`);
+    return this.http.get<any[]>(`${this.apiUrl}/posts`);
   }
 
   getComments(postId: number): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/${postId}/comments`);
+    return this.http.get<any[]>(`${this.apiUrl}/posts/${postId}/comments`);
+  }
+
+  getAlbums(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/albums`);
+  }
+
+  getPhotos(albumId: number): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/albums/${albumId}/photos`);
   }
 }
